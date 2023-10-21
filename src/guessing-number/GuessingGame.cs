@@ -39,6 +39,7 @@ public class GuessNumber
         currentAttempts += 1;
         if (currentAttempts > maxAttempts) 
         {
+            gameOver = true;
             return "Você excedeu o número máximo de tentativas! Tente novamente.";
         }
         
@@ -91,12 +92,24 @@ public class GuessNumber
     {
         if (userValue < randomValue) return "Tente um número MAIOR";
         else if (userValue > randomValue) return "Tente um número MENOR";
-        else return "ACERTOU!";
+        else
+        {
+            gameOver = true;
+            Console.WriteLine("O jogo terminou. Deseja jogar novamente?");
+            return "ACERTOU!";
+        }
+
     }
 
     //7 - Adicione uma opção para reiniciar o jogo
     public void RestartGame()
     {
-        throw new NotImplementedException();
+        userValue = 0;
+        randomValue = 0;
+        difficultyLevel = 1;
+        currentAttempts = 0;
+        maxAttempts = 5;
+        gameOver = false;
+
     }
 }
